@@ -1,20 +1,83 @@
 div1 {
-	font-family: 'Haettenschweiler';
-	color: black;	
-	font-size: 48px;
+	
+	color: white;	
+	font-size: 86px;
+	background: black;
 }
 
 #HP_1 {
-	border-top: 100px solid yellow;
+	border-top: 100px solid black;
 	border-right: 50px solid transparent;
 	height: 0;
 	width: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: red;
   }
 
 
 #HP_2 {
-	border-top: 100px solid red;
+	border-top: 100px solid black;
 	border-left: 50px solid transparent;
 	height: 0;
 	width: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: red;
+  }
+
+  #Player1 {
+	width: 300px;
+	height: 50px;
+	background: linear-gradient(0deg,  yellow, red);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size:25px;
+	font-family: 'Courier New', Courier, monospace;
+	font-weight:bold
+  }
+
+  #Player2 {
+	width: 300px;
+	height: 50px;
+	background: linear-gradient(0deg,  yellow, red);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size:25px;
+	font-family: 'Courier New', Courier, monospace;
+	font-weight:bold
+  }
+
+  #Deck1 {
+	width: 300px;
+	height: 50px;
+	background: linear-gradient(180deg, yellow, red);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size:25px;
+	font-family: 'Courier New', Courier, monospace;
+	font-weight:bold
+  }
+
+  #Deck2 {
+	width: 300px;
+	height: 50px;
+	background: linear-gradient(180deg, yellow, red);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size:25px;
+	font-family: 'Courier New', Courier, monospace;
+	font-weight:bold
+  }
+
+  .box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
   }
