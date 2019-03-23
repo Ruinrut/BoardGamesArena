@@ -3,3 +3,18 @@ div1 {
 	color: black;	
 	font-size: 48px;
 }
+
+#HP_1 {
+	border-top: 100px solid yellow;
+	border-right: 50px solid transparent;
+	height: 0;
+	width: 100px;
+  }
+
+
+#HP_2 {
+	border-top: 100px solid red;
+	border-left: 50px solid transparent;
+	height: 0;
+	width: 100px;
+  }
