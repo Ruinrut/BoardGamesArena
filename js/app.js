@@ -5,7 +5,7 @@ var app = (function () {
 
 	var start = function() {
 		timer = setInterval(updateClock, 1000);
-		totalSeconds = 5;
+		totalSeconds = 3000;
 	}	
 	
 	var updateClock = function() {
@@ -38,5 +38,14 @@ var app = (function () {
 		start: start
 	}		
 })();
+
+
+document.onkeyup = function(e) 
+{ 
+	if (e.which == 77) 
+	{
+	  alert("Начало матча!");
+	}
+};
 
 app.start();
