@@ -5,7 +5,7 @@ var app = (function () {
 
 	var start = function() {
 		timer = setInterval(updateClock, 1000);
-		totalSeconds = 3000;
+		totalSeconds = 5;
 	}	
 	
 	var updateClock = function() {
@@ -27,6 +27,11 @@ var app = (function () {
 		}
 		
 		$("h1").text(minute + ":" + seconds);
+
+		if(totalSeconds == 0)
+		{
+			totalSeconds = 3000;
+		}
 	}
 
 	return {
