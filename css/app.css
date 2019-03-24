@@ -15,6 +15,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   font-family: sans-serif; /* тут можно вставить и другие шрифты google font в помощь */
+  background-color: white;
 }
 .health {
   height: 100%;
