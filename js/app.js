@@ -1,63 +1,92 @@
-var goPlay;
-var totalSeconds;
+class Timer {
+  constructor(element, time = 3000) {
+    this.el = element;
+    this.timer = null;
+    this.isRunning = false;
+    this.inputTime = time;
+    this.time = time;
 
-var app = (function () {
+    this.update = this.update.bind(this);
+  }
 
-	var timer;
+  start() {
+    this.isRunning = true;
+    this.timer = setInterval(this.update, 1000);
+  }
+  stop() {
+    this.isRunning = false;
+    clearInterval(this.timer);
+  }
+  restart() {
+    clearInterval(this.timer);
+    this.time = this.inputTime;
+    this.update();
+    this.isRunning = false;
+  }
 
-	var start = function() {
-		timer = setInterval(updateClock, 1000);
-		totalSeconds = 3000;
-		goPlay = false;
-	}	
-	
-	var updateClock = function() {
-		if(goPlay == true)
-		{
-		    --totalSeconds;
-		}
-		var hour = Math.floor(totalSeconds / 3600);
-	    var minute = Math.floor((totalSeconds - hour * 3600) / 60);
-	    var seconds = totalSeconds - (hour * 3600 + minute * 60);
+  update() {
+    if (this.isRunning) {
+      this.time -= 1;
+    }
+    const hour = Math.floor(this.time / 3600);
+    const minute = Math.floor((this.time - hour * 3600) / 60);
+    const seconds = this.time - (hour * 3600 + minute * 60);
 
-		if(hour < 10) {
-			hour = "0" + hour;
-		}
-		
-		if(minute < 10) {
-			minute = "0" + minute;
-		}
-		
-		if(seconds < 10) {
-			seconds = "0" + seconds;
-		}
-		
-		$("div1").text(minute + ":" + seconds);
+    this.el.innerHTML = `${`0${minute}`.slice(-2)}:${`0${seconds}`.slice(-2)}`;
+    console.log(`${minute}:${seconds}`);
+  }
+}
 
-		if(totalSeconds == 0)
-		{
-			totalSeconds = 3000;
-		}
-	}
+const leftHpEl = document.getElementById('left-hp');
+const rightHpEl = document.getElementById('right-hp');
 
-	return {
-		start: start
-	}		
-})();
+let leftHPValue = parseInt(leftHpEl.value);
+let rightHPValue = parseInt(rightHpEl.value);
 
+// hp можно поменять - это следит за новыми значениями
+leftHpEl.addEventListener('change', function(e) {
+  leftHPValue = parseInt(e.target.value);
+});
+rightHpEl.addEventListener('change', function(e) {
+  rightHPValue = parseInt(e.target.value);
+});
 
-document.onkeyup = function(e) 
-{ 
-	if (e.which == 77) 
-	{
-	  goPlay = true;
-	}
+const timer = new Timer(document.getElementById('timer'));
 
-	if (e.which == 66) 
-	{
-	  goPlay = false;
-	  totalSeconds = 3000;
-	}
-};
+function onKeyUp(e) {
+  console.log(e.keyCode);
+  const { keyCode } = e;
+  if (keyCode === 81) {
+    // q - уменьшаем левое hp
+    if (leftHPValue > 0) {
+      leftHPValue -= 1;
+      leftHpEl.value = leftHPValue;
+    }
+  } else if (keyCode === 87) {
+    // w - увеличиваем левое hp
+    leftHPValue += 1;
+    leftHpEl.value = leftHPValue;
+  } else if (keyCode === 79) {
+    // o - уменьшаем правое hp
+    if (rightHPValue > 0) {
+      rightHPValue -= 1;
+      rightHpEl.value = rightHPValue;
+    }
+  } else if (keyCode === 80) {
+    // p - увеличиваем правое hp
+    rightHPValue += 1;
+    rightHpEl.value = rightHPValue;
+  } else if (keyCode === 77) {
+    // m
+    timer.start();
+  } else if (keyCode === 66) {
+    // b
+    timer.restart();
+  } else if (keyCode === 83) {
+    // s
+    timer.stop();
+  }
+}
 
-app.start();
+// keyboard listener
+window.addEventListener('keyup', onKeyUp);

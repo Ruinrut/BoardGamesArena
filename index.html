@@ -1,23 +1,35 @@
 <html>
-	<head>
-		<link rel="stylesheet" href="css/app.css"/>
-	</head>
-	<body class="box">
+  <head>
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <div id="app" class="box">
+      <div class="health">
+        <input id="left-hp" type="text" placeholder="HP" value="20" />
+      </div>
+      <div class="player">
+        <input
+          class="player__name player__name_left"
+          type="text"
+          placeholder="Игрок слева"
+        />
+        <input
+          class="player__deck player__deck_left"
+          type="text"
+          placeholder="Дека слева"
+        />
+      </div>
+      <div id="timer" class="timer">50:00</div>
+      <div class="player">
+        <input class="player__name" type="text" placeholder="Игрок справа" />
+        <input class="player__deck" type="text" placeholder="Дека справа" />
+      </div>
+      <div class="health">
+        <input id="right-hp" type="text" placeholder="HP" value="20" />
+      </div>
+    </div>
 
-		<div id='HP_1'>20</div>
-		<div>
-			<div id='Player1'>Игрок с лева</div>
-			<div id='Deck1'>Поломная дека</div>
-	    </div>
-		<div1></div1>
-		<div>
-			<div id='Player2'>Игрок с права</div>
-			<div id='Deck2'>Не менее поломная дека</div>
-		</div>
-		<div id='HP_2'>20</div>		
-
-
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="js/app.js"></script>
-	</body>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script src="js/app.js"></script>
+  </body>
 </html>
