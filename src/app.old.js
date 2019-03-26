@@ -1,3 +1,4 @@
+
 class Timer {
   constructor(element, time = 3000) {
     this.el = element;

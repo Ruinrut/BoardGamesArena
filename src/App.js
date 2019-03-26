@@ -1,9 +1,10 @@
-<html>
-  <head>
-    <link rel="stylesheet" href="css/app.css" />
-  </head>
-  <body>
-    <div id="app" class="box">
+import React, { Component } from 'react';
+import './App.css';
+
+class App extends Component {
+  render() {
+    return (
+      <div id="app" class="box">
       <div class="health">
         <input id="left-hp" type="text" placeholder="HP" value="20" />
       </div>
@@ -28,8 +29,8 @@
         <input id="right-hp" type="text" placeholder="HP" value="20" />
       </div>
     </div>
+    );
+  }
+}
 
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-    <script src="js/app.js"></script>
-  </body>
-</html>
+export default App;
