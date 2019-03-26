@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <div id="admin-app">
+            <div>
+                <label for="left-player-name">Игрок слева:</label>
+                <input type="text" id="left-player-name">
+            </div>
+        </div>
+    </body>
+    <script>
+        document.getElementById('left-player-name').value = localStorage.getItem('leftPlayerName')
+        
+        const onPlayerLeftChange = (inputEvent) => {
+            localStorage.setItem('leftPlayerName', inputEvent.target.value)
+        }
+
+        document.getElementById('left-player-name').addEventListener('change', onPlayerLeftChange)
+    </script>
+</html>
