@@ -13,13 +13,13 @@ class App extends Component {
     this.state = {
       time: initialTime,
       hpLeft:20,
-      leftPlayerName: localStorage.getItem('leftPlayerName')
+      leftPlayerName: props.leftPlayerName,
     }
   }
 
   componentDidMount = () => {
     this.gameTimer = setInterval(this.gameTimerTick, timerInterval);
-    this.stateTimer = setInterval(this.stateTimerTick, 100);
+    // this.stateTimer = setInterval(this.stateTimerTick, 100);
   }
 
   gameTimerTick = () => {

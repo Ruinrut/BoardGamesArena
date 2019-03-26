@@ -1,10 +1,16 @@
 <html>
     <body>
         <div id="admin-app">
-            <div>
-                <label for="left-player-name">Игрок слева:</label>
-                <input type="text" id="left-player-name">
-            </div>
+            <form method="POST" action="/save">
+                <div>
+                
+                    <label for="left-player-name">Игрок слева:</label>
+                    <input type="text" id="left-player-name" name="left-player-name">
+                </div>
+                <div>
+                    <input type="submit" value="Сохранить"/>
+                </div>
+            </form>
         </div>
     </body>
     <script>
