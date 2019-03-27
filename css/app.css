@@ -17,7 +17,8 @@ body {
   font-family: sans-serif; /* тут можно вставить и другие шрифты google font в помощь */
   background-color: white;
 }
-.health {
+
+.left {
   height: 100%;
   position: relative;
   align-self: center;
@@ -26,7 +27,7 @@ body {
   color: #fff;
   padding: 0 10px;
 }
-.health::after {
+.left::after {
   content: '';
 	position: absolute;
 	top: 0;
@@ -34,7 +35,41 @@ body {
   border-bottom: var(--main-height) solid var(--main-bg-color);
   border-right: 20px solid transparent;
 }
-.health::before {
+.left::before {
+  content: '';
+	position: absolute;
+	top: 0;
+  left: -20px;
+  border-top: var(--main-height) solid var(--main-bg-color);
+  border-left: 20px solid transparent;
+}
+.left input {
+  border: none;
+  outline: none;
+  font-size: 45;
+  background-color: transparent;
+  color: #fff;
+  width: 58px;
+}
+
+.right {
+  height: 100%;
+  position: relative;
+  align-self: center;
+  font-size: 45px;
+  background-color: var(--main-bg-color);
+  color: #fff;
+  padding: 0 10px;
+}
+.right::after {
+  content: '';
+	position: absolute;
+	top: 0;
+  right: -20px;
+  border-top: var(--main-height) solid var(--main-bg-color);
+  border-right: 20px solid transparent;
+}
+.right::before {
   content: '';
 	position: absolute;
 	top: 0;
@@ -42,7 +77,7 @@ body {
   border-bottom: var(--main-height) solid var(--main-bg-color);
   border-left: 20px solid transparent;
 }
-.health input {
+.right input {
   border: none;
   outline: none;
   font-size: 45;
@@ -102,3 +137,15 @@ body {
   border-top: var(--main-height) solid var(--main-bg-color);
   border-right: 20px solid transparent;
 }
+
+.line{
+  height: 100%;
+  position: relative;
+  align-self: center;
+  font-size: 45px;
+  background-color: var(--main-bg-color);
+  color: #fff;
+
+  padding: 0 10px;
+}
+
