@@ -7,6 +7,9 @@ body {
 :root {
   --main-bg-color: black;
   --main-height: 55px;
+  --main-width: 1200px;
+  --main-yellow-bg: rgba(255,255,0,0.9);
+  --main-red-bg: rgba(255,0,0,0.9);
 }
 
 .box {
@@ -15,17 +18,19 @@ body {
   flex-direction: row;
   justify-content: space-between;
   font-family: sans-serif; /* тут можно вставить и другие шрифты google font в помощь */
+  min-width: var(--main-width);
 }
 
 .left-bg{
   display: flex;
-  background-color: yellow;
+  /* background-color: yellow; */
+  background-image: -moz-linear-gradient(to right, transparent,var(--main-yellow-bg) 50%);
   width: 45%;
 }
 
 .right-bg{
   display: flex;
-  background-color: red;
+  background-image: -moz-linear-gradient(to left, transparent, var(--main-red-bg) 50%);
   width: 45%;
 }
 
@@ -150,14 +155,14 @@ body {
   content: '';
   position: absolute;
   left: -20px;
-  background-color: yellow;
+  background-color: var(--main-yellow-bg);
   border-top: var(--main-height) solid var(--main-bg-color);
   border-left: 20px solid transparent;
 }
 .timer::after {
   content: '';
   position: absolute;
-  background-color: red;
+  background-color: var(--main-red-bg);
   right: -20px;
   border-top: var(--main-height) solid var(--main-bg-color);
   border-right: 20px solid transparent;
