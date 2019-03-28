@@ -5,7 +5,7 @@ body {
 
 /* это css переменные, их можно менять, не использовать internrt explorer – это кал*/
 :root {
-  --main-bg-color: #3498db;
+  --main-bg-color: black;
   --main-height: 55px;
 }
 
@@ -15,7 +15,18 @@ body {
   flex-direction: row;
   justify-content: space-between;
   font-family: sans-serif; /* тут можно вставить и другие шрифты google font в помощь */
-  /* background-color: white; */
+}
+
+.left-bg{
+  display: flex;
+  background-color: yellow;
+  width: 45%;
+}
+
+.right-bg{
+  display: flex;
+  background-color: red;
+  width: 45%;
 }
 
 .left {
@@ -46,15 +57,6 @@ body {
   border-top: var(--main-height) solid var(--main-bg-color);
   border-left: 20px solid transparent;
 }
-/* .left input {
-  border: none;
-  outline: none;
-  font-size: 45;
-  background-color: transparent;
-  color: #fff;
-  width: 58px;
-  text-align: center;
-} */
 .left-w {
   border: none;
   outline: none;
@@ -94,16 +96,6 @@ body {
   border-bottom: var(--main-height) solid var(--main-bg-color);
   border-left: 20px solid transparent;
 }
-/*
-.right input {
-  border: none;
-  outline: none;
-  font-size: 45;
-  background-color: transparent;
-  color: #fff;
-  width: 58px;
-  text-align: center;
-}*/
 .right-w {
   border: none;
   outline: none;
@@ -144,6 +136,7 @@ body {
 
 .timer {
   height: 100%;
+  width: 10%;
   position: relative;
   align-self: center;
   font-size: 45px;
@@ -157,12 +150,14 @@ body {
   content: '';
   position: absolute;
   left: -20px;
+  background-color: yellow;
   border-top: var(--main-height) solid var(--main-bg-color);
-  border-left: 20px solid;
+  border-left: 20px solid transparent;
 }
 .timer::after {
   content: '';
   position: absolute;
+  background-color: red;
   right: -20px;
   border-top: var(--main-height) solid var(--main-bg-color);
   border-right: 20px solid transparent;
