@@ -3,105 +3,133 @@ body {
   padding: 0;
 }
 
-/* это css переменные, их можно менять, не использовать internrt explorer – это кал*/
-:root {
-  --main-bg-color: black;
-  --main-height: 65px;
-  --main-width: 1200px;
-  --main-yellow-bg: rgba(255,255,0,0.9);
-  --main-red-bg: rgba(255,0,0,0.9);
-}
+// это переменные scss
+$main-bg-color: rgba(0,0,0, 1);
+$main-height: 65px;
+$main-width: 1200px;
+$main-bg-yellow: rgba(255,255,0,0.9);
+$main-bg-red: rgba(255,0,0,0.9);
+$main-height-high-block: 80px; // высота 1 и последнего блока
+$main-number-color: #fff;
 
 .box {
-  height: var(--main-height);
+  height: $main-height;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   font-family: sans-serif; /* тут можно вставить и другие шрифты google font в помощь */
-  min-width: var(--main-width);
+  min-width: $main-width;
+  margin-top: 5px;
 }
 
-.left-bg{
+.left-bg {
   display: flex;
-  /* background-color: yellow; */
-  background-image: linear-gradient(to right, transparent,var(--main-yellow-bg) 50%);
+  background-image: linear-gradient(to right, transparent, $main-bg-yellow 50%);
   width: 45%;
 }
 
 .right-bg{
   display: flex;
-  background-image: linear-gradient(to left, transparent, var(--main-red-bg) 50%);
+  background-image: linear-gradient(to left, transparent, $main-bg-red 50%);
   width: 45%;
 }
 
 .left {
+  display: flex;
+  align-items: center;
   height: 100%;
   position: relative;
   align-self: center;
   font-size: 45px;
-  background-color: var(--main-bg-color);
-  color: #fff;
+  background-color: $main-bg-color;
+  color: $main-number-color;
   padding: 0 10px;
   margin-left: 20px;
   margin-right: 20px;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    border-top: $main-height solid $main-bg-color;
+    border-left: 20px solid transparent;
+  }
 
   &::after {
     content: '';
     position: absolute;
     top: 0;
     right: -20px;
-    border-bottom: var(--main-height) solid var(--main-bg-color);
+    border-bottom: $main-height solid $main-bg-color;
     border-right: 20px solid transparent;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -20px;
-    border-top: var(--main-height) solid var(--main-bg-color);
-    border-left: 20px solid transparent;
   }
 }
 
-.left-w {
-  border: none;
-  outline: none;
-  font-size: 45;
-  background-color: transparent;
-  color: #fff;
-  width: 58px;
-  text-align: center;
+.left_left{
+  height: $main-height-high-block;
+  margin-right: 23px;
+
+  &::before {
+    border-top: $main-height-high-block solid $main-bg-color;
+    left: -24px;
+    border-left: 24px solid transparent;
+  }
+  
+  &::after {
+    border-bottom: $main-height-high-block solid $main-bg-color;
+    right: -24px;
+    border-right: 24px solid transparent;
+  }
 }
 
 .right {
+  display: flex;
+  align-items: center;
   height: 100%;
   position: relative;
   align-self: center;
   font-size: 45px;
-  background-color: var(--main-bg-color);
-  color: #fff;
+  background-color: $main-bg-color;
+  color: $main-number-color;
   padding: 0 10px;
   margin-left: 20px;
   margin-right: 20px;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -20px;
-    border-top: var(--main-height) solid var(--main-bg-color);
-    border-right: 20px solid transparent;
-  }
 
   &::before {
     content: '';
     position: absolute;
     top: 0;
     left: -20px;
-    border-bottom: var(--main-height) solid var(--main-bg-color);
+    border-bottom: $main-height solid $main-bg-color;
     border-left: 20px solid transparent;
   }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20px;
+    border-top: $main-height solid $main-bg-color;
+    border-right: 20px solid transparent;
+  }
+}
+
+.right-right {
+  height: $main-height-high-block;
+  margin-left: 23px;
+
+  &::before {
+    left: -24px;
+    border-left: 24px solid transparent;
+    border-bottom: $main-height-high-block solid $main-bg-color;
+  }
+
+  &::after {
+    right: -24px;
+    border-right: 24px solid transparent;
+    border-top: $main-height-high-block solid $main-bg-color;
+  }
+  
 }
 
 .player {
@@ -113,11 +141,12 @@ body {
   padding: 0 30px;
 }
 .player__name {
+  display: block;
   font-weight: 600;
   text-transform: uppercase;
 }
 .player__deck {
-  color: #8e8e8e;
+  display: block;
 }
 .player__name_left {
   text-align: right;
@@ -127,13 +156,16 @@ body {
 }
 
 .timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   width: 10%;
   position: relative;
   align-self: center;
   font-size: 45px;
-  background-color: var(--main-bg-color);
-  color: #fff;
+  background-color: $main-bg-color;
+  color: $main-number-color;
   padding: 0 10px;
   margin-left: 20px;
   margin-right: 20px;
@@ -142,17 +174,17 @@ body {
     content: '';
     position: absolute;
     left: -20px;
-    background-color: var(--main-yellow-bg);
-    border-top: var(--main-height) solid var(--main-bg-color);
+    background-color: $main-bg-yellow;
+    border-top: $main-height solid $main-bg-color;
     border-left: 20px solid transparent;
   }
 
   &::after {
     content: '';
     position: absolute;
-    background-color: var(--main-red-bg);
+    background-color: $main-bg-red;
     right: -20px;
-    border-top: var(--main-height) solid var(--main-bg-color);
+    border-top: $main-height solid $main-bg-color;
     border-right: 20px solid transparent;
   }
 }
