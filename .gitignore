@@ -1,3 +1,7 @@
+build/
+build/css/app.min.css
+build/css/app.min.css.map
+build/index.html
 
 # Logs
 logs
