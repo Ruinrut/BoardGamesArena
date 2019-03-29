@@ -6,7 +6,7 @@ body {
 /* это css переменные, их можно менять, не использовать internrt explorer – это кал*/
 :root {
   --main-bg-color: black;
-  --main-height: 55px;
+  --main-height: 65px;
   --main-width: 1200px;
   --main-yellow-bg: rgba(255,255,0,0.9);
   --main-red-bg: rgba(255,0,0,0.9);
@@ -24,13 +24,13 @@ body {
 .left-bg{
   display: flex;
   /* background-color: yellow; */
-  background-image: -moz-linear-gradient(to right, transparent,var(--main-yellow-bg) 50%);
+  background-image: linear-gradient(to right, transparent,var(--main-yellow-bg) 50%);
   width: 45%;
 }
 
 .right-bg{
   display: flex;
-  background-image: -moz-linear-gradient(to left, transparent, var(--main-red-bg) 50%);
+  background-image: linear-gradient(to left, transparent, var(--main-red-bg) 50%);
   width: 45%;
 }
 
@@ -44,23 +44,26 @@ body {
   padding: 0 10px;
   margin-left: 20px;
   margin-right: 20px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20px;
+    border-bottom: var(--main-height) solid var(--main-bg-color);
+    border-right: 20px solid transparent;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    border-top: var(--main-height) solid var(--main-bg-color);
+    border-left: 20px solid transparent;
+  }
 }
-.left::after {
-  content: '';
-	position: absolute;
-	top: 0;
-  right: -20px;
-  border-bottom: var(--main-height) solid var(--main-bg-color);
-  border-right: 20px solid transparent;
-}
-.left::before {
-  content: '';
-	position: absolute;
-	top: 0;
-  left: -20px;
-  border-top: var(--main-height) solid var(--main-bg-color);
-  border-left: 20px solid transparent;
-}
+
 .left-w {
   border: none;
   outline: none;
@@ -70,7 +73,6 @@ body {
   width: 58px;
   text-align: center;
 }
-
 
 .right {
   height: 100%;
@@ -82,22 +84,24 @@ body {
   padding: 0 10px;
   margin-left: 20px;
   margin-right: 20px;
-}
-.right::after {
-  content: '';
-	position: absolute;
-	top: 0;
-  right: -20px;
-  border-top: var(--main-height) solid var(--main-bg-color);
-  border-right: 20px solid transparent;
-}
-.right::before {
-  content: '';
-	position: absolute;
-	top: 0;
-  left: -20px;
-  border-bottom: var(--main-height) solid var(--main-bg-color);
-  border-left: 20px solid transparent;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20px;
+    border-top: var(--main-height) solid var(--main-bg-color);
+    border-right: 20px solid transparent;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    border-bottom: var(--main-height) solid var(--main-bg-color);
+    border-left: 20px solid transparent;
+  }
 }
 
 .player {
@@ -133,20 +137,22 @@ body {
   padding: 0 10px;
   margin-left: 20px;
   margin-right: 20px;
-}
-.timer::before {
-  content: '';
-  position: absolute;
-  left: -20px;
-  background-color: var(--main-yellow-bg);
-  border-top: var(--main-height) solid var(--main-bg-color);
-  border-left: 20px solid transparent;
-}
-.timer::after {
-  content: '';
-  position: absolute;
-  background-color: var(--main-red-bg);
-  right: -20px;
-  border-top: var(--main-height) solid var(--main-bg-color);
-  border-right: 20px solid transparent;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    background-color: var(--main-yellow-bg);
+    border-top: var(--main-height) solid var(--main-bg-color);
+    border-left: 20px solid transparent;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: var(--main-red-bg);
+    right: -20px;
+    border-top: var(--main-height) solid var(--main-bg-color);
+    border-right: 20px solid transparent;
+  }
 }
