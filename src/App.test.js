@@ -21,3 +21,9 @@ it('decreases time by one on tick', () => {
   jest.advanceTimersByTime(1000);
   expect(getByTestId('timer').textContent).toBe('49:59');
 })
+
+it('decreases time by last tick done', () => {
+  const { getByTestId } = render(<App/>)
+  jest.advanceTimersByTime(3000000);
+  expect(getByTestId('timer').textContent).toBe('00:00');
+})

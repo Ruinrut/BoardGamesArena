@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Timer from './Timer'
-import './App.css';
+import './app.min.css';
 import { subSeconds } from 'date-fns'
 
 const timerInterval = 1000;
@@ -47,27 +47,25 @@ class App extends Component {
 
   render() {
     return (
-      <div id="app" className="box">
-        <div className="health">
-          <div className="input" id="left-hp">{this.state.hpLeft || 'HP'}</div>
+      <div id="app" class="box">
+      <div class="left-bg">
+        <div class="player">
+          <span class="player__name player__deck_left">Игрок слева</span>
+          <span class="player__deck player__deck_left">Дека слева</span>
         </div>
-        <div className="player">
-          <div
-            className="player__name player__name_left input"
-          >{this.state.leftPlayerName || 'Игрок слева'}</div>
-          <div
-            className="player__deck player__deck_left input"
-          >Дека слева</div>
+          <span class="left">20</span>
+          <span class="left left_left">0</span>
         </div>
         <Timer time={this.state.time}/>
-        <div className="player">
-          <div className="player__name input">Игрок справа</div>
-          <div className="player__deck input">Дека справа</div>
-        </div>
-        <div className="health">
-          <div className="input" id="right-hp">20</div>
+        <div class="right-bg">
+          <span class="right right-right">0</span>
+          <span class="right">20</span>
+        <div class="player">
+          <span class="player__name">Игрок справа</span>
+          <span class="player__deck">Дека справа</span>
         </div>
       </div>
+    </div>
     );
   }
 }
