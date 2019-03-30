@@ -12,14 +12,22 @@ class App extends Component {
     initialTime.setMinutes(50, 0);
     this.state = {
       time: initialTime,
-      hpLeft:20,
+
+      leftPlayerHP: props.leftPlayerHP,
+      leftPlayerWin: props.leftPlayerWin,
       leftPlayerName: props.leftPlayerName,
+      leftDeckName: props.leftDeckName,
+
+      rightPlayerHP: props.rightPlayerHP,
+      rightPlayerWin: props.rightPlayerWin,
+      rightPlayerName: props.rightPlayerName,
+      rightDeckName: props.rightDeckName
     }
   }
 
   componentDidMount = () => {
     this.gameTimer = setInterval(this.gameTimerTick, timerInterval);
-    // this.stateTimer = setInterval(this.stateTimerTick, 100);
+    this.stateTimer = setInterval(this.stateTimerTick, 100);
   }
 
   gameTimerTick = () => {
@@ -37,7 +45,16 @@ class App extends Component {
   stateTimerTick = () => {
     this.setState({
       ...this.state,
-      leftPlayerName: localStorage.getItem('leftPlayerName')
+
+      leftPlayerHP: localStorage.getItem('leftPlayerHP'),
+      leftPlayerWin: localStorage.getItem('leftPlayerWin'),
+      leftPlayerName: localStorage.getItem('leftPlayerName'),
+      leftDeckName: localStorage.getItem('leftDeckName'),
+
+      rightPlayerHP: localStorage.getItem('rightPlayerHP'),
+      rightPlayerWin: localStorage.getItem('rightPlayerWin'),
+      rightPlayerName: localStorage.getItem('rightPlayerName'),
+      rightDeckName: localStorage.getItem('rightDeckName')
     })
   }
 
