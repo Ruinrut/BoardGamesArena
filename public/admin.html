@@ -1,84 +1,55 @@
 <html>
     <body>
-        <div id="admin-app">
+        <div>
             <form method="POST" action="/save">
                 
-                <div>   
-                    <label for="left-player-HP">HP игрока слева:</label>
-                    <input type="text" id="left-player-HP" name="left-player-HP">  
-                    <label for="left-player-win">Победы игрока слева:</label>
-                    <input type="text" id="left-player-HP" name="left-player-win">             
-                    <label for="left-player-name">Игрок слева:</label>
-                    <input type="text" id="left-player-name" name="left-player-name">
-                    <label for="left-deck-name">Дэка слева:</label>
-                    <input type="text" id="left-deck-name" name="left-deck-name">
+                <div class="player-info">   
+                    <label>HP игрока слева:</label>
+                    <input type="text" name="leftPlayerHP">  
+                    <label>Победы игрока слева:</label>
+                    <input type="text" name="leftPlayerWin">             
+                    <label>Игрок слева:</label>
+                    <input type="text" name="leftPlayerName">
+                    <label>Дэка слева:</label>
+                    <input type="text" name="leftDeckName">
                 </div>
 
-                <div>   
-                    <label for="right-player-HP">HP игрока справа:</label>
-                    <input type="text" id="right-player-HP" name="right-player-HP">  
-                    <label for="right-player-win">Победы игрока справа:</label>
-                    <input type="text" id="right-player-HP" name="right-player-win">             
-                    <label for="right-player-name">Игрок справа:</label>
-                    <input type="text" id="right-player-name" name="right-player-name">
-                    <label for="right-deck-name">Дэка справа:</label>
-                    <input type="text" id="right-deck-name" name="right-deck-name">
+                <div class="player-info">   
+                    <label>HP игрока справа:</label>
+                    <input type="text" name="rightPlayerHP">  
+                    <label>Победы игрока справа:</label>
+                    <input type="text" name="rightPlayerWin">             
+                    <label>Игрок справа:</label>
+                    <input type="text" name="rightPlayerName">
+                    <label>Дэка справа:</label>
+                    <input type="text" name="rightDeckName">
                 </div>
 
                 <div>
                     <input type="submit" value="Сохранить"/>
-                    <input type="submit" value="Начать матч"/>
-                    <input type="submit" value="Дефолт"/>
+                    <button>Начать матч</button>
+                    <button>Дефолт</button>
                 </div>
 
             </form>
         </div>
     </body>
     <script>
-        document.getElementById('left-player-HP').value = localStorage.getItem('leftPlayerHP')
-        document.getElementById('left-player-win').value = localStorage.getItem('leftPlayerWin')
-        document.getElementById('left-player-name').value = localStorage.getItem('leftPlayerName')
-        document.getElementById('left-deck-name').value = localStorage.getItem('leftDeckName')
+        const getData = async () => {
+            const response = await fetch('/game');
+            return await response.json();
+        };
+        const fillForm = (data) => {
+            for (let key in data) {
+                document.getElementsByName(key)[0].value = data[key];
+            }
+        }
 
-        document.getElementById('right-player-HP').value = localStorage.getItem('rightPlayerHP')
-        document.getElementById('right-player-win').value = localStorage.getItem('rightPlayerWin')
-        document.getElementById('right-player-name').value = localStorage.getItem('rightPlayerName')
-        document.getElementById('right-deck-name').value = localStorage.getItem('rightDeckName')
+        const main = async () => {
+            const data = await getData();
+            fillForm(data);
+        }
         
-        const onPlayerLeftHPChange = (inputEvent) => {
-            localStorage.setItem('leftPlayerHP', inputEvent.target.value)
-        }
-        const onPlayerLeftWinChange = (inputEvent) => {
-            localStorage.setItem('leftPlayerWin', inputEvent.target.value)
-        }
-        const onPlayerLeftNameChange = (inputEvent) => {
-            localStorage.setItem('leftPlayerName', inputEvent.target.value)
-        }
-        const onPlayerLeftDeckChange = (inputEvent) => {
-            localStorage.setItem('leftDeckName', inputEvent.target.value)
-        }
-
-        const onPlayerRightHPChange = (inputEvent) => {
-            localStorage.setItem('rightPlayerHP', inputEvent.target.value)
-        }
-        const onPlayerRightWinChange = (inputEvent) => {
-            localStorage.setItem('rightPlayerWin', inputEvent.target.value)
-        }
-        const onPlayerRightNameChange = (inputEvent) => {
-            localStorage.setItem('rightPlayerName', inputEvent.target.value)
-        }
-        const onPlayerRightDeckChange = (inputEvent) => {
-            localStorage.setItem('rightDeckName', inputEvent.target.value)
-        }
-
-        document.getElementById('left-player-HP').addEventListener('change', onPlayerLeftHPChange)
-        document.getElementById('left-player-win').addEventListener('change', onPlayerLeftWinChange)
-        document.getElementById('left-player-name').addEventListener('change', onPlayerLeftNameChange)
-        document.getElementById('left-deck-name').addEventListener('change', onPlayerLeftDeckChange)
-
-        document.getElementById('right-player-HP').addEventListener('change', onPlayerRightHPChange)
-        document.getElementById('right-player-win').addEventListener('change', onPlayerRightWinChange)
-        document.getElementById('right-player-name').addEventListener('change', onPlayerRightNameChange)
-        document.getElementById('right-deck-name').addEventListener('change', onPlayerRightDeckChange)
+        main();
     </script>
 </html>

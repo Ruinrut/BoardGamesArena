@@ -49,15 +49,15 @@ class App extends Component {
     this.setState({
       ...this.state,
 
-      leftPlayerHP: game['left-player-HP'],
-      leftPlayerWin: game['left-player-win'],
-      leftPlayerName: game['left-player-name'],
-      leftDeckName: game['left-deck-name'],
+      leftPlayerHP: game['leftPlayerHP'],
+      leftPlayerWin: game['leftPlayerWin'],
+      leftPlayerName: game['leftPlayerName'],
+      leftDeckName: game['leftDeckName'],
 
-      rightPlayerHP: game['right-player-HP'],
-      rightPlayerWin: game['right-player-win'],
-      rightPlayerName: game['right-player-name'],
-      rightDeckName: game['right-deck-name']
+      rightPlayerHP: game['rightPlayerHP'],
+      rightPlayerWin: game['rightPlayerWin'],
+      rightPlayerName: game['rightPlayerName'],
+      rightDeckName: game['rightDeckName']
     })
   }
 
