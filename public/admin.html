@@ -1,34 +1,58 @@
 <html>
+    <head>
+        <style>
+            .form {
+                display: flex;
+            }
+        </style>
+    </head>
     <body>
         <div>
             <form method="POST" action="/save">
-                
-                <div class="player-info">   
-                    <label>HP игрока слева:</label>
-                    <input type="text" name="leftPlayerHP">  
-                    <label>Победы игрока слева:</label>
-                    <input type="text" name="leftPlayerWin">             
-                    <label>Игрок слева:</label>
-                    <input type="text" name="leftPlayerName">
-                    <label>Дэка слева:</label>
-                    <input type="text" name="leftDeckName">
-                </div>
+                <div class="form">
+                    <div>   
+                        <div>
+                            <label>HP игрока слева:</label>
+                            <input type="text" name="leftPlayerHP">
+                        </div>
+                        <div>
+                            <label>Победы игрока слева:</label>
+                            <input type="text" name="leftPlayerWin">
+                        </div>
+                        <div>
+                            <label>Игрок слева:</label>
+                            <input type="text" name="leftPlayerName">
+                        </div>
+                        <div>
+                            <label>Дэка слева:</label>
+                            <input type="text" name="leftDeckName">
+                        </div>
+                    </div>
 
-                <div class="player-info">   
-                    <label>HP игрока справа:</label>
-                    <input type="text" name="rightPlayerHP">  
-                    <label>Победы игрока справа:</label>
-                    <input type="text" name="rightPlayerWin">             
-                    <label>Игрок справа:</label>
-                    <input type="text" name="rightPlayerName">
-                    <label>Дэка справа:</label>
-                    <input type="text" name="rightDeckName">
+                    <div>   
+                        <div>
+                            <label>HP игрока справа:</label>
+                            <input type="text" name="rightPlayerHP">
+                        </div>
+                        <div>
+                            <label>Победы игрока справа:</label>
+                            <input type="text" name="rightPlayerWin">
+                        </div>
+                        <div>
+                            <label>Игрок справа:</label>
+                            <input type="text" name="rightPlayerName">
+                        </div>
+                        <div>
+                            <label>Дэка справа:</label>
+                            <input type="text" name="rightDeckName">
+                        </div>
+                    </div>
                 </div>
 
                 <div>
                     <input type="submit" value="Сохранить"/>
-                    <button>Начать матч</button>
-                    <button>Дефолт</button>
+                    <button id="startMatch">Начать матч</button>
+                    <button id="resetButton">Дефолт</button>
                 </div>
 
             </form>
@@ -41,7 +65,10 @@
         };
         const fillForm = (data) => {
             for (let key in data) {
-                document.getElementsByName(key)[0].value = data[key];
+                const element = document.getElementsByName(key)[0]
+                if (element) {
+                    element.value = data[key];
+                }
             }
         }
 
@@ -51,5 +78,25 @@
         }
         
         main();
+
+        startMatch.addEventListener('click', async () => {
+            await fetch('/start', { method: 'POST' });
+        });
+
+        resetButton.addEventListener('click', async () => {
+            await fetch('/save', { method: 'POST', body: JSON.stringify(defaultObj) });
+        });
+
+        const defaultObj = {
+            leftPlayerHP:20,
+            leftPlayerWin:0,
+            leftPlayerName:"Player1",
+            leftDeckName:"Deck1",
+            rightPlayerHP:20,
+            rightPlayerWin:0,
+            rightPlayerName:"Player2",
+            rightDeckName:"Deck2",
+            endTime: "2019-03-31T13:22:21.172Z"
+        }
     </script>
 </html>

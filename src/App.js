@@ -1,45 +1,17 @@
 import React, { Component } from 'react';
 import Timer from './Timer'
 import './app.min.css';
-import { subSeconds } from 'date-fns'
-
-const timerInterval = 1000;
 
 class App extends Component {
   constructor(props){
     super(props);
-    const initialTime = new Date();
-    initialTime.setMinutes(50, 0);
     this.state = {
-      time: initialTime,
-
-      leftPlayerHP: props.leftPlayerHP,
-      leftPlayerWin: props.leftPlayerWin,
-      leftPlayerName: props.leftPlayerName,
-      leftDeckName: props.leftDeckName,
-
-      rightPlayerHP: props.rightPlayerHP,
-      rightPlayerWin: props.rightPlayerWin,
-      rightPlayerName: props.rightPlayerName,
-      rightDeckName: props.rightDeckName
+      ...props,
     }
   }
 
   componentDidMount = () => {
-    this.gameTimer = setInterval(this.gameTimerTick, timerInterval);
     this.stateTimer = setInterval(this.stateTimerTick, 1000);
-  }
-
-  gameTimerTick = () => {
-    const currentState = this.state;
-    const newTime = subSeconds(currentState.time, 1);
-    if(newTime.getMinutes() === 0 && newTime.getSeconds() === 0) {
-      this.stop();
-    }
-    this.setState({
-      ...currentState,
-      time: newTime,
-    });
   }
 
   stateTimerTick = async () => {
@@ -48,22 +20,9 @@ class App extends Component {
     
     this.setState({
       ...this.state,
-
-      leftPlayerHP: game['leftPlayerHP'],
-      leftPlayerWin: game['leftPlayerWin'],
-      leftPlayerName: game['leftPlayerName'],
-      leftDeckName: game['leftDeckName'],
-
-      rightPlayerHP: game['rightPlayerHP'],
-      rightPlayerWin: game['rightPlayerWin'],
-      rightPlayerName: game['rightPlayerName'],
-      rightDeckName: game['rightDeckName']
+      ...game,
     })
   }
-
-  stop = () =>{
-    clearInterval(this.gameTimer);
-  } 
 
   render() {
     return (
@@ -76,7 +35,7 @@ class App extends Component {
           <span class="left">{this.state.leftPlayerHP}</span>
           <span class="left left_left">{this.state.leftPlayerWin}</span>
         </div>
-        <Timer time={this.state.time}/>
+        <Timer time={this.state.endTime}/>
         <div class="right-bg">
           <span class="right right-right">{this.state.rightPlayerWin}</span>
           <span class="right">{this.state.rightPlayerHP}</span>
