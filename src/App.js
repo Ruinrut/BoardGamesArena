@@ -27,7 +27,7 @@ class App extends Component {
 
   componentDidMount = () => {
     this.gameTimer = setInterval(this.gameTimerTick, timerInterval);
-    this.stateTimer = setInterval(this.stateTimerTick, 100);
+    this.stateTimer = setInterval(this.stateTimerTick, 1000);
   }
 
   gameTimerTick = () => {
@@ -42,19 +42,22 @@ class App extends Component {
     });
   }
 
-  stateTimerTick = () => {
+  stateTimerTick = async () => {
+    const response = await fetch('/game');
+    const game = await response.json();
+    
     this.setState({
       ...this.state,
 
-      leftPlayerHP: localStorage.getItem('leftPlayerHP'),
-      leftPlayerWin: localStorage.getItem('leftPlayerWin'),
-      leftPlayerName: localStorage.getItem('leftPlayerName'),
-      leftDeckName: localStorage.getItem('leftDeckName'),
+      leftPlayerHP: game['left-player-HP'],
+      leftPlayerWin: game['left-player-win'],
+      leftPlayerName: game['left-player-name'],
+      leftDeckName: game['left-deck-name'],
 
-      rightPlayerHP: localStorage.getItem('rightPlayerHP'),
-      rightPlayerWin: localStorage.getItem('rightPlayerWin'),
-      rightPlayerName: localStorage.getItem('rightPlayerName'),
-      rightDeckName: localStorage.getItem('rightDeckName')
+      rightPlayerHP: game['right-player-HP'],
+      rightPlayerWin: game['right-player-win'],
+      rightPlayerName: game['right-player-name'],
+      rightDeckName: game['right-deck-name']
     })
   }
 
@@ -67,19 +70,19 @@ class App extends Component {
       <div id="app" class="box">
       <div class="left-bg">
         <div class="player">
-          <span class="player__name player__deck_left">Игрок слева</span>
-          <span class="player__deck player__deck_left">Дека слева</span>
+          <span class="player__name player__deck_left">{this.state.leftPlayerName}</span>
+          <span class="player__deck player__deck_left">{this.state.leftDeckName}</span>
         </div>
-          <span class="left">20</span>
-          <span class="left left_left">0</span>
+          <span class="left">{this.state.leftPlayerHP}</span>
+          <span class="left left_left">{this.state.leftPlayerWin}</span>
         </div>
         <Timer time={this.state.time}/>
         <div class="right-bg">
-          <span class="right right-right">0</span>
-          <span class="right">20</span>
+          <span class="right right-right">{this.state.rightPlayerWin}</span>
+          <span class="right">{this.state.rightPlayerHP}</span>
         <div class="player">
-          <span class="player__name">Игрок справа</span>
-          <span class="player__deck">Дека справа</span>
+          <span class="player__name">{this.state.rightPlayerName}</span>
+          <span class="player__deck">{this.state.rightDeckName}</span>
         </div>
       </div>
     </div>

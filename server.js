@@ -30,6 +30,7 @@ app.get('/game', function (req, res) {
         if (err) {
           res.status(500).send(`Can't read file: ${JSON.stringify(err)}`);
         } else {
+          res.setHeader('Cache-Control', 'no-store')
           res.send(data);
         }
       });
