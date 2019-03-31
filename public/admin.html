@@ -51,11 +51,12 @@
 
                 <div>
                     <input type="submit" value="Сохранить"/>
-                    <button id="startMatch">Начать матч</button>
-                    <button id="resetButton">Дефолт</button>
                 </div>
-
             </form>
+            <div>
+                <button id="startMatch">Начать матч</button>
+                <button id="resetButton">Дефолт</button>
+            </div>
         </div>
     </body>
     <script>
@@ -84,7 +85,8 @@
         });
 
         resetButton.addEventListener('click', async () => {
-            await fetch('/save', { method: 'POST', body: JSON.stringify(defaultObj) });
+            await fetch('/save', { method: 'POST', body: defaultForm });
+            window.location.href = window.location.href;
         });
 
         const defaultObj = {
@@ -97,6 +99,11 @@
             rightPlayerName:"Player2",
             rightDeckName:"Deck2",
             endTime: "2019-03-31T13:22:21.172Z"
+        }
+
+        const defaultForm = new URLSearchParams();
+        for (let k in defaultObj) {
+            defaultForm.append(k, defaultObj[k]);
         }
     </script>
 </html>
