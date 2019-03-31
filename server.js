@@ -1,24 +1,55 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const path = require('path');
+const { promisify } = require('util')
 const fs = require('fs');
+const { addMinutes } = require('date-fns');
+
+const readFile = promisify(fs.readFile);
+const writeFile = promisify(fs.writeFile);
+
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', function (req, res) {
+app.get('/', function (_, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.post('/save', function (req, res) {
-  console.log(req.body)
-  fs.writeFile('data.json', JSON.stringify(req.body), 'utf8', err => {
-    if (err) {
-      res.status(500).send(`Error!: ${JSON.stringify(err)}`);
-    } else {
-      res.redirect('/admin.html');
+app.post('/save', async (req, res) => {
+  try {
+    const data = {
+      ...await readData(),
+      ...req.body,
+    };
+    await writeData(data);
+    res.redirect('/admin.html');
+  } catch (e) {
+    res.status(500).send(`Error!: ${JSON.stringify(e)}`);
+  }
+})
+
+const readData = async () => {
+  const contents = await readFile('data.json', 'utf8');
+  return JSON.parse(contents);
+}
+
+const writeData = async (data) => {
+  await writeFile('data.json', JSON.stringify(data), 'utf8')
+}
+
+app.post('/start', async function(req, res) {
+  const matchDuration = 50;
+  try {
+    const data = {
+      ...await readData(),
+      endTime: addMinutes(new Date(), matchDuration)
     }
-  })
+
+    await writeData(data);
+  } catch (e) {
+    res.status(500).send(`Error!: ${JSON.stringify(e)}`);
+  }
 })
 
 app.get('/game', function (req, res) {

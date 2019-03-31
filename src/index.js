@@ -4,8 +4,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const main = async () => {
-  const result = await fetch('/game');
-  const props = await result.json();
+  const result = fetch('/game');
+  const props = {
+    ...(await (await result).json()),
+  }
   ReactDOM.render(<App {...props}/>, document.getElementById('root'));
 };
 
