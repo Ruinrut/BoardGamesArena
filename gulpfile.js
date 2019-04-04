@@ -45,8 +45,8 @@ function styles() {
     .pipe(dest(paths.build + 'css/'));
 }
 
-// function svgSprite() {
-  // return src(paths.src + 'svg/*.svg')
+function svgSprite() {
+  return src(paths.src + 'svg/*.svg')
     // .pipe(svgmin(function (file) {
       // return {
         // plugins: [{
@@ -58,8 +58,8 @@ function styles() {
     // }))
     // .pipe(svgstore({ inlineSvg: true }))
     // .pipe(rename('sprite-svg.svg'))
-    // .pipe(dest(paths.build + 'img/'));
-// }
+    .pipe(dest(paths.build + 'img/'));
+}
 
 function scripts() {
   return src(paths.src + 'js/*.js')
@@ -119,17 +119,17 @@ exports.scripts = scripts;
 // exports.scriptsVendors = scriptsVendors;
 exports.htmls = htmls;
 // exports.images = images;
-// exports.svgSprite = svgSprite;
+exports.svgSprite = svgSprite;
 exports.clean = clean;
 exports.watcher = watcher;
 
 exports.build = series(
   clean,
-  parallel(styles, scripts, htmls)
+  parallel(styles, svgSprite, scripts, htmls)
 );
 
 exports.default = series(
   clean,
-  parallel(styles, scripts, htmls),
+  parallel(styles, svgSprite, scripts, htmls),
   parallel(watcher, serve),
 );
