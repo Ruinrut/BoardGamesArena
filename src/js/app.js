@@ -95,21 +95,17 @@
 
 
 // mobile version
-var left_value = document.getElementsByClassName("left_value")[0];
+var left_value = document.querySelector(".left_value");
 var leftVal = parseFloat(left_value.innerHTML);
-
-var right_value = document.getElementsByClassName("right_value")[0];
+var right_value = document.querySelector(".right_value");
 var righthVal = parseFloat(right_value.innerHTML);
-
 
 document.querySelectorAll(".plus")[0].onclick = function() {
     left_value.innerHTML = ++leftVal;
 }
 
 document.querySelectorAll(".minus")[0].onclick = function() {
-  if (leftVal > 0) {
-    left_value.innerHTML = --leftVal;
-  } 
+  left_value.innerHTML = --leftVal;
 } 
 
 document.querySelectorAll(".plus")[1].onclick = function() {
@@ -117,25 +113,21 @@ document.querySelectorAll(".plus")[1].onclick = function() {
 }
 
 document.querySelectorAll(".minus")[1].onclick = function() {
-  if (righthVal > 0) {
-    right_value.innerHTML = --righthVal;
-  } 
+  right_value.innerHTML = --righthVal;
 } 
 
+document.querySelector(".reset").onclick = function() {
+  left_value.innerHTML = 20;
+  right_value.innerHTML = 20;
+  leftVal = 20;
+  righthVal = 20;
+  document.querySelector(".reset").style.display = "none";
+  document.querySelector(".menu_btn").style.display = "block";
+}
 
-
-// document.querySelector(".plus").onclick = function() {
-//   splashInput.innerHTML = ++righthVal;
-// }
-
-// document.querySelector(".minus").onclick = function() {
-//   if (righthVal > 0) {
-//     splashInput.innerHTML = --righthVal;
-//   } 
-// } 
-
-
-
-
+document.querySelector(".menu_btn").onclick = function() {
+  document.querySelector(".menu_btn").style.display = "none";
+  document.querySelector(".reset").style.display = "block";
+}
 
 
