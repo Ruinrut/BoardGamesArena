@@ -1,97 +1,38 @@
-// class Timer {
-//   constructor(element, time = 3000) {
-//     this.el = element;
-//     this.timer = null;
-//     this.isRunning = false;
-//     this.inputTime = time;
-//     this.time = time;
+var domTimer = document.querySelector(".timer");
+var matchTime = 3000; //В секундах
+var timer = setInterval(updateTime, 1000);
+var isRunning = false;
 
-//     this.update = this.update.bind(this);
-//   }
 
-//   start() {
-//     this.isRunning = true;
-//     this.timer = setInterval(this.update, 1000);
-//   }
+function updateTime() {
+  if (isRunning) {
+    matchTime -= 1;
+  }
 
-//   stop() {
-//     this.isRunning = false;
-//     clearInterval(this.timer);
-//   }
+  const hour = Math.floor(matchTime / 3600);
+  const minute = Math.floor((matchTime - hour * 3600) / 60);
+  const seconds = matchTime - (hour * 3600 + minute * 60);
 
-//   restart() {
-//     clearInterval(this.timer);
-//     this.time = this.inputTime;
-//     this.update();
-//     this.isRunning = false;
-//   }
+  domTimer.innerHTML = `${`0${minute}`.slice(-2)}:${`0${seconds}`.slice(-2)}`;
+}
 
-//   update() {
-//     if (this.isRunning) {
-//       this.time -= 1;
-//     }
-//     const hour = Math.floor(this.time / 3600);
-//     const minute = Math.floor((this.time - hour * 3600) / 60);
-//     const seconds = this.time - (hour * 3600 + minute * 60);
 
-//     this.el.innerHTML = `${`0${minute}`.slice(-2)}:${`0${seconds}`.slice(-2)}`;
-//     console.log(`${minute}:${seconds}`);
-//   }
-// }
+ function onKeyUp(e) {
+   const { keyCode } = e;
+ 
+   if (keyCode === 83 && e.shiftKey ) {
+     // ctrl + s
+     isRunning = true;
+   } else if (keyCode === 82 && e.shiftKey ) {
+     // ctrl + r
+    matchTime = 3000;
+    isRunning = false;
+    updateTime();
+   } 
+ }
 
-// const leftHpEl = document.getElementById('left-hp');
-// const rightHpEl = document.getElementById('right-hp');
-
-// let leftHPValue = parseInt(leftHpEl.value);
-// let rightHPValue = parseInt(rightHpEl.value);
-
-// // hp можно поменять - это следит за новыми значениями
-// leftHpEl.addEventListener('change', function(e) {
-//   leftHPValue = parseInt(e.target.value);
-// });
-// rightHpEl.addEventListener('change', function(e) {
-//   rightHPValue = parseInt(e.target.value);
-// });
-
-// const timer = new Timer(document.getElementById('timer'));
-
-// function onKeyUp(e) {
-//   console.log(e.keyCode);
-//   const { keyCode } = e;
-//   if (keyCode === 81) {
-//     // q - уменьшаем левое hp
-//     if (leftHPValue > 0) {
-//       leftHPValue -= 1;
-//       leftHpEl.value = leftHPValue;
-//     }
-//   } else if (keyCode === 87) {
-//     // w - увеличиваем левое hp
-//     leftHPValue += 1;
-//     leftHpEl.value = leftHPValue;
-//   } else if (keyCode === 79) {
-//     // o - уменьшаем правое hp
-//     if (rightHPValue > 0) {
-//       rightHPValue -= 1;
-//       rightHpEl.value = rightHPValue;
-//     }
-//   } else if (keyCode === 80) {
-//     // p - увеличиваем правое hp
-//     rightHPValue += 1;
-//     rightHpEl.value = rightHPValue;
-//   } else if (keyCode === 77) {
-//     // m
-//     timer.start();
-//   } else if (keyCode === 66) {
-//     // b
-//     timer.restart();
-//   } else if (keyCode === 83) {
-//     // s
-//     timer.stop();
-//   }
-// }
-
-// // keyboard listener
-// window.addEventListener('keyup', onKeyUp);
+ // keyboard listener
+ window.addEventListener('keyup', onKeyUp);
 
 
 // mobile version
