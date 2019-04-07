@@ -12,27 +12,28 @@ function updateTime() {
   const hour = Math.floor(matchTime / 3600);
   const minute = Math.floor((matchTime - hour * 3600) / 60);
   const seconds = matchTime - (hour * 3600 + minute * 60);
-
+ console.log("updating time");
+ console.log(`${`0${minute}`.slice(-2)}:${`0${seconds}`.slice(-2)}`);
   domTimer.innerHTML = `${`0${minute}`.slice(-2)}:${`0${seconds}`.slice(-2)}`;
 }
 
 
  function onKeyUp(e) {
-   const { keyCode } = e;
+  const { keyCode } = e;
  
-   if (keyCode === 83 && e.shiftKey ) {
-     // ctrl + s
-     isRunning = true;
-   } else if (keyCode === 82 && e.shiftKey ) {
-     // ctrl + r
+  console.log("on key up");
+  if (isRunning) {
     matchTime = 3000;
     isRunning = false;
     updateTime();
-   } 
+  } 
+  else{
+    isRunning = true;
+  }
  }
 
  // keyboard listener
- window.addEventListener('keyup', onKeyUp);
+ domTimer.addEventListener('click', onKeyUp);
 
 
 // mobile version
@@ -42,6 +43,7 @@ var right_value = document.querySelector(".right_value");
 var righthVal = parseFloat(right_value.innerHTML);
 
 document.querySelectorAll(".plus")[0].onclick = function() {
+  console.log("on key up");
     left_value.innerHTML = ++leftVal;
 }
 
@@ -70,5 +72,3 @@ document.querySelector(".menu_btn").onclick = function() {
   document.querySelector(".menu_btn").style.display = "none";
   document.querySelector(".reset").style.display = "block";
 }
-
-
