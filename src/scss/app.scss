@@ -162,10 +162,16 @@ $main-number-color: #fff;
 .player__name {
   display: block;
   font-weight: 600;
+  font-size: 18px;
   text-transform: uppercase;
+  background-color: transparent;
+  border: none;
 }
 .player__deck {
   display: block;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
 }
 .player__name_left {
   text-align: right;
