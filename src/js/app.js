@@ -20,6 +20,8 @@ function onKeyUp(e) {
   console.log("on key up");
   if (isRunning) {
     matchTime = 3000;
+    rightPlayerWins.innerHTML = 0;
+    leftPlayerWins.innerHTML = 0;
     isRunning = false;
     updateTime();
   } 
