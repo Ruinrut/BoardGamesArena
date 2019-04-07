@@ -3,7 +3,6 @@ var matchTime = 3000; //В секундах
 var timer = setInterval(updateTime, 1000);
 var isRunning = false;
 
-
 function updateTime() {
   if (isRunning) {
     matchTime -= 1;
@@ -12,13 +11,10 @@ function updateTime() {
   const hour = Math.floor(matchTime / 3600);
   const minute = Math.floor((matchTime - hour * 3600) / 60);
   const seconds = matchTime - (hour * 3600 + minute * 60);
- console.log("updating time");
- console.log(`${`0${minute}`.slice(-2)}:${`0${seconds}`.slice(-2)}`);
   domTimer.innerHTML = `${`0${minute}`.slice(-2)}:${`0${seconds}`.slice(-2)}`;
 }
 
-
- function onKeyUp(e) {
+function onKeyUp(e) {
   const { keyCode } = e;
  
   console.log("on key up");
@@ -33,8 +29,35 @@ function updateTime() {
  }
 
  // keyboard listener
- domTimer.addEventListener('click', onKeyUp);
+domTimer.addEventListener('click', onKeyUp);
 
+var leftPlayerWins = document.querySelector(".left_left");
+var leftPlayerWinsVal = parseFloat(leftPlayerWins.innerHTML);
+var rightPlayerWins = document.querySelector(".right_right");
+var rightPlayerWinsVal= parseFloat(rightPlayerWins.innerHTML);
+ 
+function leftPlayerWin() {
+  if (leftPlayerWinsVal >= 2){
+    leftPlayerWinsVal = 0;
+  }
+  else{
+    ++leftPlayerWinsVal;
+  }
+  leftPlayerWins.innerHTML = leftPlayerWinsVal;
+}
+
+function rightPlayerWin() {
+  if (rightPlayerWinsVal >= 2){
+    rightPlayerWinsVal = 0;
+  }
+  else{
+    ++rightPlayerWinsVal;
+  }
+  rightPlayerWins.innerHTML = rightPlayerWinsVal;
+}
+
+leftPlayerWins.addEventListener('click', leftPlayerWin);
+rightPlayerWins.addEventListener('click', rightPlayerWin);
 
 // mobile version
 var left_value = document.querySelector(".left_value");
