@@ -1,1 +1,3 @@
-npm install, gulp
+https://gulpjs.com/
+npm install
+gulp
