@@ -102,3 +102,53 @@ body {
   border-top: var(--main-height) solid var(--main-bg-color);
   border-right: 20px solid transparent;
 }
+
+.circles {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  min-width: 934px;
+}
+
+.circles__player-left,
+.circles__player-right {
+  width: 20%;
+  /* border: 1px solid green;*/ /*раскоментить, чтобы увидеть границы действия клика для закраски кружков */
+}
+
+.circles__player-left {
+  margin-right: 136px;
+}
+
+.cirles-list {
+  display: flex;
+  justify-content: flex-end;
+  margin-block-start: 5px;
+  margin-block-end: 25px;
+  padding-inline-start: 0;
+  height: 20px;
+  width: 100%;
+}
+
+.circles__player-right > .cirles-list {
+  justify-content: flex-start;
+  margin-left: 0;
+}
+
+.circles__player-right > .cirles-list > .cirles-list__item:first-child {
+  margin-left: 0;
+}
+
+.cirles-list__item {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  border-radius: 100%;
+  list-style-type: none;
+  background-color: red;
+}
+
+.cirles-list__item_color_green {
+  background-color: green;
+}
+

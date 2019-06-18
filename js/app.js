@@ -90,3 +90,45 @@ function onKeyUp(e) {
 
 // keyboard listener
 window.addEventListener('keyup', onKeyUp);
+
+
+////////////////////////////
+circlesCount = document.querySelector(".cirles-list").getElementsByTagName("li").length;
+
+leftPlayer = document.querySelector('.circles__player-left');
+rightPlayer = document.querySelector('.circles__player-right');
+
+circlesListLeftPlayer = document.querySelector(".circles__player-left").querySelector(".cirles-list");
+circlesListRightPlayer = document.querySelector(".circles__player-right").querySelector(".cirles-list");
+
+var left_i = 0,
+    right_i = 0;
+
+leftPlayer.addEventListener('click', function(e) {
+  if (left_i == circlesCount) {
+    left_i = 0;
+    elements = circlesListLeftPlayer.getElementsByTagName("li");
+    for (let j = 0; j < elements.length; j++) {
+      elements[j].classList.remove("cirles-list__item_color_green");
+    }
+  } else {
+    el = circlesListLeftPlayer.getElementsByTagName("li")[circlesCount - 1 - left_i];
+    el.className += " cirles-list__item_color_green";
+    left_i++;
+  }
+});
+
+rightPlayer.addEventListener('click', function(e) {
+  if (right_i == circlesCount) {
+    right_i = 0;
+    elements = circlesListRightPlayer.getElementsByTagName("li");
+    for (let j = 0; j < elements.length; j++) {
+      elements[j].classList.remove("cirles-list__item_color_green");
+    }
+  } else {
+    el = circlesListRightPlayer.getElementsByTagName("li")[right_i];
+    el.className += " cirles-list__item_color_green";
+    right_i++;
+  }
+});
+
