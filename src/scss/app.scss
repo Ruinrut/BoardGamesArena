@@ -147,8 +147,7 @@ $main-number-color: #fff;
     right: -24px;
     border-right: 24px solid transparent;
     border-top: $main-height-high-block solid $main-bg-color;
-  }
-  
+  }  
 }
 
 .player {
@@ -167,15 +166,18 @@ $main-number-color: #fff;
   background-color: transparent;
   border: none;
 }
+
 .player__deck {
   display: block;
   background-color: transparent;
   border: none;
   font-size: 16px;
 }
+
 .player__name_left {
   text-align: right;
 }
+
 .player__deck_left {
   text-align: right;
 }
@@ -345,3 +347,54 @@ $main-number-color: #fff;
     background-size: 80% 80%;
   }
 }
+
+// кружки
+.circles {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  min-width: 934px;
+}
+
+.circles__player-left,
+.circles__player-right {
+  width: 20%;
+  // border: 1px solid green;/*раскоментить, чтобы увидеть границы действия клика для закраски кружков */
+}
+
+.circles__player-left {
+  margin-right: 400px; // раздвигает кружки
+}
+
+.cirles-list {
+  display: flex;
+  justify-content: flex-end;
+  margin-block-start: 5px;
+  margin-block-end: 25px;
+  padding-inline-start: 0;
+  height: 20px;
+  width: 100%;
+}
+
+.circles__player-right > .cirles-list {
+  justify-content: flex-start;
+  margin-left: 0;
+}
+
+.circles__player-right > .cirles-list > .cirles-list__item:first-child {
+  margin-left: 0;
+}
+
+.cirles-list__item {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  border-radius: 100%;
+  list-style-type: none;
+  background-color: red;
+}
+
+.cirles-list__item_color_green {
+  background-color: green;
+}
+

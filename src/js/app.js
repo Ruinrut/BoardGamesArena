@@ -24,13 +24,22 @@ function onKeyUp(e) {
     leftPlayerWins.innerHTML = 0;
     isRunning = false;
     updateTime();
+
+    let elements = document.getElementsByTagName("li");
+
+    for (let j = 0; j < elements.length; j++) {
+      elements[j].classList.remove("cirles-list__item_color_green");
+    }
+
+    left_i = 0;
+    right_i = 0;
   } 
   else{
     isRunning = true;
   }
  }
 
- // keyboard listener
+// keyboard listener
 domTimer.addEventListener('click', onKeyUp);
 
 var leftPlayerWins = document.querySelector(".left_left");
@@ -97,3 +106,43 @@ document.querySelector(".menu_btn").onclick = function() {
   document.querySelector(".menu_btn").style.display = "none";
   document.querySelector(".reset").style.display = "block";
 }
+
+//////////
+var circlesCount = document.querySelector(".cirles-list").getElementsByTagName("li").length;
+
+var leftPlayer = document.querySelector('.circles__player-left');
+var rightPlayer = document.querySelector('.circles__player-right');
+
+var circlesListLeftPlayer = document.querySelector(".circles__player-left").querySelector(".cirles-list");
+var circlesListRightPlayer = document.querySelector(".circles__player-right").querySelector(".cirles-list");
+
+var left_i = 0,
+    right_i = 0;
+
+leftPlayer.addEventListener('click', function(e) { 
+  if (left_i == circlesCount) {
+    left_i = 0;
+    var elements = circlesListLeftPlayer.getElementsByTagName("li");
+    for (let j = 0; j < elements.length; j++) {
+      elements[j].classList.remove("cirles-list__item_color_green");
+    }
+  } else {
+    var el = circlesListLeftPlayer.getElementsByTagName("li")[circlesCount - 1 - left_i];
+    el.className += " cirles-list__item_color_green";
+    left_i++;
+  }
+});
+
+rightPlayer.addEventListener('click', function(e) {
+  if (right_i == circlesCount) {
+    right_i = 0;
+    var elements = circlesListRightPlayer.getElementsByTagName("li");
+    for (let j = 0; j < elements.length; j++) {
+      elements[j].classList.remove("cirles-list__item_color_green");
+    }
+  } else {
+    var el = circlesListRightPlayer.getElementsByTagName("li")[right_i];
+    el.className += " cirles-list__item_color_green";
+    right_i++;
+  }
+});
